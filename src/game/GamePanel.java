@@ -42,12 +42,13 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
         setFocusable(true);
         addKeyListener(this);
 
-        loadAssets();
+        loadAssets(); 
         initGame();
         loadHighScore();
         startTimers();
     }
 
+    //Cargar las imagenes
     private void loadAssets() {
         background = AssetLoader.load("/img/flappybirdbg.png");
         playerImg  = AssetLoader.load("/img/flappybird.png");
@@ -55,6 +56,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
         bottomPipe = AssetLoader.load("/img/bottompipe.png");
     }
 
+    
     private void initGame() {
         bird = new Bird(
                 Constants.WIDTH / 8,
@@ -117,6 +119,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
         g.setFont(new Font("Arial", Font.BOLD, 20));
         g.drawString("High Score: " + highScore, 10, 70);
 
+        // GameOver
         if (gameOver) {
             g.setFont(new Font("Arial", Font.BOLD, 36));
             g.setColor(Color.RED);
@@ -155,6 +158,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
         }
     }
 
+    //Colisiones
     private boolean checkCollision(Bird p, Pipes o) {
         return p.x < o.x + o.width &&
                 p.x + p.width > o.x &&
